@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@layout/fragment_text_view">
+
+    <action android:id="@+id/actionToText" app:destination="@id/fragmentTextView" />
+
+    <action android:id="@+id/actionToWeb" app:destination="@id/fragmentWebView" />
+
+    <fragment
+        android:id="@+id/fragmentTextView"
+        android:name="com.github.cr9ck.offerwall.presentation.TextViewFragment"
+        android:label="TextViewFragment"
+        tools:layout="@layout/fragment_text_view">
+
+        <argument
+            android:name="text"
+            app:nullable="true"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentWebView"
+        android:name="com.github.cr9ck.offerwall.presentation.WebViewFragment"
+        android:label="WebViewFragment"
+        tools:layout="@layout/fragment_web_view" >
+
+        <argument
+            android:name="url"
+            app:nullable="false"
+            app:argType="string" />
+    </fragment>
+</navigation>
