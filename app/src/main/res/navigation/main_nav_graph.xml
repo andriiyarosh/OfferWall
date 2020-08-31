@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@layout/fragment_text_view">
+    app:startDestination="@id/fragmentTextView">
 
     <action android:id="@+id/actionToText" app:destination="@id/fragmentTextView" />
 
@@ -18,7 +18,8 @@
         <argument
             android:name="text"
             app:nullable="true"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
 
     <fragment
