@@ -1,6 +1,5 @@
 package com.github.cr9ck.offerwall.viewmodel
 
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +10,6 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.Subject
 import java.util.*
-import java.util.concurrent.Executors
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
@@ -31,6 +29,7 @@ class MainViewModel @Inject constructor(
 
     fun nextRecord() {
         viewStateLD.postValue(DataLoadingState.DataLoading)
+
         val record = recordsQueue.poll()
         val result = record?.let {
             recordsQueue.add(record)
@@ -68,13 +67,11 @@ class MainViewModel @Inject constructor(
             }
     }
 
-    private fun getStateByType(recordDetails: RecordDetails): ViewState? {
-        return when (recordDetails.type) {
+    private fun getStateByType(recordDetails: RecordDetails) = when (recordDetails.type) {
             "game" -> ViewState.Game
             "text" -> recordDetails.contents?.let { ViewState.TextState(it) }
             "webview" -> recordDetails.url?.let { ViewState.WebState(it) }
             else -> null
-        }
     }
 
     sealed class DataLoadingState {
